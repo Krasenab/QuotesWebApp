@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuotesWebApp.Data
 {
@@ -14,5 +15,10 @@ namespace QuotesWebApp.Data
         public string Category { get; set; }
 
         public string YearsFromTo { get; set; }
+
+        [ForeignKey(nameof(Quotes))]
+        public int QuotesId { get; set; }
+
+        public Quotes Quotes { get; set; }
     }
 }
