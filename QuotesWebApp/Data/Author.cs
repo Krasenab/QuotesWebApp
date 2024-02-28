@@ -17,8 +17,8 @@ namespace QuotesWebApp.Data
         public string YearsFromTo { get; set; }
 
         [ForeignKey(nameof(Quotes))]
-        public int QuotesId { get; set; }
+        public int? QuotesId { get; set; }
 
-        public Quotes Quotes { get; set; }
+        public Quotes? Quotes { get; set; }
     }
 }
