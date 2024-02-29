@@ -1,0 +1,30 @@
+﻿@model List<AllAuthorViewModel>
+@{
+    ViewData["Title"] = "All Author";
+}
+
+<h1>
+    @ViewData["Title"];
+</h1>
+
+@if (Model.Any())
+{   foreach (var author in Model)
+    {
+        
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@author.Name</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">@author.Category</h6>
+                <p class="card-text">@author.YearsFromTo</p>
+
+                <a class="card-link" asp-action="ViewQuotes" asp-controller="Author">View Quotes</a>
+                <a class="card-link" asp-action="Index" asp-controller="Honme">Go Home</a>
+            </div>
+        </div>
+    }
+  
+}
+
+<p>For now we don't have quotes for you, but you can add some</p>
+
+

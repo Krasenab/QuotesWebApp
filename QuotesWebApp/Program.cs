@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QuotesWebApp.Data;
+using QuotesWebApp.Service;
 
 namespace QuotesWebApp
 {
@@ -20,6 +22,7 @@ namespace QuotesWebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<AuthorService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -34,15 +37,7 @@ namespace QuotesWebApp
                 app.UseHsts();
             }
 
-            builder.Services.Configure<IdentityOptions>(options =>
-            {
-                
-                options.Password.RequiredLength = 6;
-                options.Password.RequireDigit=false;
-                options.Password.RequireLowercase=false;
-                options.Password.RequireUppercase=false;
-                
-            });
+          
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
