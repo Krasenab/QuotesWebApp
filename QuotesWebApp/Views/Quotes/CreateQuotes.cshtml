@@ -1,4 +1,4 @@
-﻿
+﻿@model CreateQuotesViewModel
 @{
     ViewData["Title"] = "Create Author Quotes";
 }
@@ -7,23 +7,18 @@
 
 <form method="post" asp-action="Create" asp-controller="Quotes">
 
-    <div class="input-group mb-3">
+    <div class="form-group">
+        <label for="Descriptopn">Write quote</label>
 
-        <span class="input-group-text" id="inputGroup-sizing-default" asp-validation-for="Name">Author Name:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="Name">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" asp-for="Description"></textarea>
     </div>
 
     <div class="input-group mb-3">
 
-        <span class="input-group-text" id="inputGroup-sizing-default" asp-validation-for="Category">Category:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="Category">
+        <span class="input-group-text" id="inputGroup-sizing-default" asp-validation-for="Sources">Category:</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="Sources">
     </div>
 
-    <div class="input-group mb-3">
-
-        <span class="input-group-text" id="inputGroup-sizing-default">Years</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="YearsFromTo">
-    </div>
 
     <div>
         <input class="btn" type="submit" value="Add Person" style="background-color:blueviolet;">
