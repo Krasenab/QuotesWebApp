@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Create Author Quotes";
+}
+
+<h1>@this.ViewData["Title"]</h1>
+
+<form method="post" asp-action="Create" asp-controller="Quotes">
+
+    <div class="input-group mb-3">
+
+        <span class="input-group-text" id="inputGroup-sizing-default" asp-validation-for="Name">Author Name:</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="Name">
+    </div>
+
+    <div class="input-group mb-3">
+
+        <span class="input-group-text" id="inputGroup-sizing-default" asp-validation-for="Category">Category:</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="Category">
+    </div>
+
+    <div class="input-group mb-3">
+
+        <span class="input-group-text" id="inputGroup-sizing-default">Years</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" asp-for="YearsFromTo">
+    </div>
+
+    <div>
+        <input class="btn" type="submit" value="Add Person" style="background-color:blueviolet;">
+    </div>
+
+
+</form>

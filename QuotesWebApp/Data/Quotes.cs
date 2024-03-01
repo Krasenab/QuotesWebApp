@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata.Ecma335;
 
 namespace QuotesWebApp.Data
 {
@@ -14,6 +15,12 @@ namespace QuotesWebApp.Data
 
         [Required]
         public string Description { get; set; }
+
+        [ForeignKey(nameof(Author))]
+        public int AuthorId  { get; set; }
+
+        public Author Author { get; set; }
+
 
         [ForeignKey(nameof(Comment))]
         public int CommentId  { get; set; }

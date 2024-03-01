@@ -30,6 +30,7 @@ namespace QuotesWebApp.Service
         {
             List<AllAuthorViewModel> getAll =  _db.Authors.Select(a => new AllAuthorViewModel() 
             {
+                Id=a.Id,
                 Name = a.Name,
                 Category = a.Category,
                 YearsFromTo = a.YearsFromTo
