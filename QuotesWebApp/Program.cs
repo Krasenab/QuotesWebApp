@@ -23,6 +23,7 @@ namespace QuotesWebApp
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<AuthorService>();
+            builder.Services.AddScoped<QuotesService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

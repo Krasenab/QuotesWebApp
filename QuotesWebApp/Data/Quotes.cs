@@ -23,8 +23,8 @@ namespace QuotesWebApp.Data
 
 
         [ForeignKey(nameof(Comment))]
-        public int CommentId  { get; set; }
-        public Comment Comment { get; set; }
+        public int? CommentId  { get; set; }
+        public Comment? Comment { get; set; }
 
 
     }

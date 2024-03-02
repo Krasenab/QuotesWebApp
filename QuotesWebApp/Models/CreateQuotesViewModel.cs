@@ -10,7 +10,8 @@ namespace QuotesWebApp.Models
         [Required]
         public string Description { get; set; }
 
-        
+
+        public int AuthorId { get; set;  }
     }
 
 }

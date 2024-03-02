@@ -12,12 +12,12 @@ namespace QuotesWebApp.Service
         }
 
         
-        public void CreateQuotes(int authorId,CreateQuotesViewModel model)
+        public void CreateQuotes(CreateQuotesViewModel model)
         {
 
             Quotes q = new Quotes()
             {
-                AuthorId = authorId,
+                AuthorId = model.AuthorId,
                 Sources = model.Sources,
                 Description = model.Description
             };
@@ -25,6 +25,13 @@ namespace QuotesWebApp.Service
             _db.Quotes.Add(q);
             _db.SaveChanges();
             
+        }
+
+        public int GetAuthorIdForQuotes(int authorId)
+        {
+           int id = _db.Authors.Where(x=>x.Id == authorId).Select(x=>x.Id).FirstOrDefault();
+
+            return id;
         }
     }
 }

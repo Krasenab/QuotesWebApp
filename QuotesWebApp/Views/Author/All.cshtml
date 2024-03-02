@@ -17,7 +17,10 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">@author.Category</h6>
                 <p class="card-text">@author.YearsFromTo</p>
 
-                <a class="card-link" asp-action="CreateQuotes" asp-controller="Quotes" asp-route-id="@author.Id">Create Quotes</a>
+                <form asp-action="CreateQuotes" asp-controller="Quotes" asp-route-autorId="@author.Id" method="get">
+                    <input type="hidden" name="authorId" value="@author.Id" />
+                    <button type="submit" class="btn btn-sm">Create Quotes</button>
+                </form>
                 <a class="card-link" asp-action="All" asp-controller="Quotes">View All</a>
             </div>
         </div>

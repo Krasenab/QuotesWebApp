@@ -4,7 +4,9 @@ namespace QuotesWebApp.Service
 {
     public interface  IQuotesService
     {
-        void CreateQuotes(int authorId,CreateQuotesViewModel viewModel);
+        void CreateQuotes(CreateQuotesViewModel viewModel);
+
+        int GetAuthorIdForQuotes (int authorId);
 
     }
 }
