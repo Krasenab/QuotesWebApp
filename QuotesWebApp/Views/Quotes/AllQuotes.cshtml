@@ -1,4 +1,4 @@
-﻿@model List<AllQuotes> 
+﻿@model List<AllQuotesViewModel> 
 @{
     ViewData["Tatle"] = "All Person Quotes and sources for them";
 }
@@ -7,4 +7,20 @@
     @ViewData["Title"]
 </h1>
 
+<h6>@Model.Select(x=>x.AuthorName)</h6>
+
+@foreach (var quotes in Model)
+{
+    <div class="card">
+        <div class="card-header">
+            Quote
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>@quotes.Description</p>
+                <footer class="blockquote-footer">@quotes.AuthorName<cite title="@quotes.Sources">Source Title</cite></footer>
+            </blockquote>
+        </div>
+    </div>
+}
 

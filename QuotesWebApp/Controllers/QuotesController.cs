@@ -45,5 +45,14 @@ namespace QuotesWebApp.Controllers
 
             return RedirectToAction("Index","Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AllQuotes(int authorId)
+        { 
+            var getAllQuotes = await _quotesService.AllQutes(authorId);
+
+            return View(getAllQuotes);
+
+        }
     }
 }

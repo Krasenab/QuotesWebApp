@@ -1,4 +1,5 @@
-﻿using QuotesWebApp.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using QuotesWebApp.Data;
 using QuotesWebApp.Models;
 
 namespace QuotesWebApp.Service
@@ -11,7 +12,21 @@ namespace QuotesWebApp.Service
                 _db = applicationDb;
         }
 
-        
+        public async Task<List<AllQuotesViewModel>> AllQutes(int authorId)
+        {
+           var getAllQuotes = await _db.Quotes.Where(x=>x.AuthorId == authorId)
+                .Select(x => new AllQuotesViewModel()
+                {
+                    AuthorName= x.Author.Name,
+                    Description= x.Description,
+                    Sources= x.Sources,
+                    
+                }).ToListAsync();
+               
+
+            return getAllQuotes;
+        }
+
         public void CreateQuotes(CreateQuotesViewModel model)
         {
 

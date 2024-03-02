@@ -1,6 +1,6 @@
 ﻿namespace QuotesWebApp.Models
 {
-    public class AllQuotes
+    public class AllQuotesViewModel
     {
         public string AuthorName { get; set; }
 

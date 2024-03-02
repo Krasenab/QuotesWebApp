@@ -21,7 +21,12 @@
                     <input type="hidden" name="authorId" value="@author.Id" />
                     <button type="submit" class="btn btn-sm">Create Quotes</button>
                 </form>
-                <a class="card-link" asp-action="All" asp-controller="Quotes">View All</a>
+                
+                <form asp-controller="Quotes" asp-action="AllQuotes" asp-route-ahtorId="@author.Id" method="get" >
+
+                    <input type="hidden" name="authorId" value="@author.Id"/>
+                    <button type="submit" class="btn btn-sm btn-warning">View All Quotes</button>
+                </form>
             </div>
         </div>
     }
