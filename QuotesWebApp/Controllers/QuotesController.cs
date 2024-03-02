@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using QuotesWebApp.Models;
 
 namespace QuotesWebApp.Controllers
 {
     public class QuotesController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
+      
 
-        [HttpGet]
-        public IActionResult CreateQuotes() 
+        
+        public IActionResult CreateQuotes(int id) 
         {
+
+            
             return View();
         }
       
