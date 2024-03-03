@@ -15,8 +15,12 @@ namespace QuotesWebApp.Data
 
         public DbSet<Quotes> Quotes  { get; set; }
 
+        public DbSet<Vote> Votes { get; set; }
         public DbSet<Comment> Comment { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+  
+
     }
 }
