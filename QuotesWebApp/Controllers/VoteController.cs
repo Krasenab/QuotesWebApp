@@ -12,9 +12,9 @@ namespace QuotesWebApp.Controllers
     [ApiController]
     public class VoteController : ControllerBase
     {
-        private IVoteService voteService;
+        private VoteService voteService;
         private UserManager<ApplicationUser> userManager;
-        public VoteController(IVoteService vote,UserManager<ApplicationUser> userM)
+        public VoteController(VoteService vote,UserManager<ApplicationUser> userM)
         {
             voteService = vote;
             userManager = userM;
