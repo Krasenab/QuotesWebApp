@@ -6,7 +6,7 @@ namespace QuotesWebApp.Data
     {
         public ApplicationUser()
         {
-                
+                   
         }
     }
 }

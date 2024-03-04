@@ -7,6 +7,13 @@ namespace QuotesWebApp.Data
 {
     public class Quotes
     {
+        public Quotes()
+        {
+
+            this.Comments = new List<Comment>();
+            
+            this.Votes = new List<Vote>();
+        }
         [Key]
         public int Id { get; set; }
 
@@ -22,11 +29,9 @@ namespace QuotesWebApp.Data
         public Author Author { get; set; }
 
 
-        [ForeignKey(nameof(Comment))]
-        public int? CommentId  { get; set; }
-        public Comment? Comment { get; set; }
+        public virtual List<Comment> Comments { get; set; }
 
-        
+        public virtual List<Vote> Votes  { get; set; }
 
     }
 }
