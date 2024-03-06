@@ -16,13 +16,15 @@ namespace QuotesWebApp.Service
         {
            var getAllQuotes = await _db.Quotes.Where(x=>x.AuthorId == authorId)
                 .Select(x => new AllQuotesViewModel()
-                {
+                {   QuoteId = x.Id,
                     AuthorName= x.Author.Name,
                     Description= x.Description,
                     Sources= x.Sources,
+                    VotesCount = x.Votes.Sum(x=>(int)x.VoteType)
                     
                 }).ToListAsync();
-               
+                
+                
 
             return getAllQuotes;
         }
