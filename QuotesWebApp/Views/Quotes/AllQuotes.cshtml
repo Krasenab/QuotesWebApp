@@ -22,7 +22,7 @@
             </blockquote>
             <div class="text-muted large ml-3">
                 <div>
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,true,  @quotes.VotesCount)">
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,true)">
                         <i class="fa fa-thumbs-up"></i>
                     </a>
                     
@@ -30,7 +30,7 @@
                    <div>@quotes.VotesCount</div>
                 <div>
 
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,false,  @quotes.VotesCount)"><i class="fa fa-thumbs-down"></i></a>
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
 
 <script>
  
-        function sendVote(quoteId,isUpVote,votesCount) {
+        function sendVote(quoteId,isUpVote) {
 
             var json = { quoteId: quoteId, isUpVote:isUpVote};
             console.log(json);
@@ -51,7 +51,7 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                   ${ "#votesCount".html(data.votesCount) }
+                    $("#votesCount").html(data.votesCount);
                 }
 
             });
