@@ -27,7 +27,7 @@
                     </a>
                     
                 </div>
-                   <div  id="votesTotal">@quotes.VotesCount</div>
+                <div id="votesTotal-@quotes.QuoteId">@quotes.VotesCount</div>
                 <div>
 
                     <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
@@ -52,7 +52,7 @@
                 dataType: "json",
                 success: function (data) {
                   
-                    $.ajax("#votesTotal").html(data.VotesCount);
+                    $("#votesTotal-" + quoteId).html(data.VotesCount);
                 }
 
             });
@@ -65,42 +65,4 @@
 
 
 
-@* 
-<script>
-
-    function upVote(quoteId) {
-
-        var json = { quotesId: quotesId, IsUpVote: true };
-        console.log(json);
-        $.ajax({
-            url: "/api/QuoteVot",
-            type: "POST",
-            data: json,
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function () {
-
-            }
-        });
-    
-    }
-
-    function downVote(quotesId) 
-    {
-        var json = { quotesId: quotesId, IsUpVote:false};
-        console.log(json);
-        $.ajax({
-            url:"/api/QuoteVot",
-            type:"POST",
-            data: json,
-            contentType:"application/json;charset=utf-8",
-            dataType:"json",
-            success: function ()             
-            {
-                
-            }
-        });
-    }
-
-</script> *@
 
