@@ -27,7 +27,7 @@
                     </a>
                     
                 </div>
-                   <div>@quotes.VotesCount</div>
+                   <div  id="votesTotal">@quotes.VotesCount</div>
                 <div>
 
                     <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
@@ -51,7 +51,8 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    $("#votesCount").html(data.votesCount);
+                  
+                    $.ajax("#votesTotal").html(data.VotesCount);
                 }
 
             });

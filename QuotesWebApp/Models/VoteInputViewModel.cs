@@ -5,5 +5,7 @@
         public int QuoteId { get; set; }
 
         public bool IsUpVote { get; set; }
+
+       
     }
 }
