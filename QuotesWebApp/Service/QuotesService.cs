@@ -20,7 +20,8 @@ namespace QuotesWebApp.Service
                     AuthorName= x.Author.Name,
                     Description= x.Description,
                     Sources= x.Sources,
-                    VotesCount = x.Votes.Sum(x=>(int)x.VoteType)
+                    VoteCount = x.Votes.Sum(x=>(int)x.VoteType),
+                  
                     
                 }).ToListAsync();
                 

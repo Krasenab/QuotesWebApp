@@ -1,4 +1,4 @@
-﻿@model List<AllQuotesViewModel> 
+﻿﻿@model List<AllQuotesViewModel>
 @{
     ViewData["Tatle"] = "All Person Quotes and sources for them";
 }
@@ -52,7 +52,7 @@
                 dataType: "json",
                 success: function (data) {
                   
-                    $("#votesTotal-" + quoteId).html(data.VotesCount);
+                    $("#votesTotal-" + quoteId).html(data.VoteCount);
                 }
 
             });
@@ -62,7 +62,3 @@
 </script>
     
    
-
-
-
-
