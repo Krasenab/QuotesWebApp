@@ -1,4 +1,4 @@
-﻿﻿@model List<AllQuotesViewModel>
+﻿@model List<AllQuotesViewModel>
 @{
     ViewData["Tatle"] = "All Person Quotes and sources for them";
 }
@@ -27,7 +27,7 @@
                     </a>
                     
                 </div>
-                <div id="votesTotal-@quotes.QuoteId">@quotes.VotesCount</div>
+                <div id="votesTotal-@quotes.QuoteId">@quotes.VoteCount</div>
                 <div>
 
                     <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
