@@ -19,7 +19,7 @@ namespace QuotesWebApp.Service
         {
            return 0;
 
-           
+         
         }
         public int GetVotes(int quotesId)
         {

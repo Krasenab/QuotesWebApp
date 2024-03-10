@@ -15,7 +15,8 @@ namespace QuotesWebApp.Models
 
         public string Sources { get; set; }
 
-        public int VoteCount { get; set; }
+        //public int VoteCount { get; set; }
+
 
       
 
