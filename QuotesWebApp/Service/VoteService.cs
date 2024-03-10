@@ -17,7 +17,7 @@ namespace QuotesWebApp.Service
 
         public int GetTotalVotes(int quotesId) 
         {
-           
+           return 0;
 
            
         }
