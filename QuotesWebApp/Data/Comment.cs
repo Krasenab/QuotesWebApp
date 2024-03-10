@@ -17,5 +17,10 @@ namespace QuotesWebApp.Data
         public Guid ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
+
+        [ForeignKey(nameof(Quotes))]
+        public int QuotesId { get; set; }
+
+        public Quotes Quotes { get; set; }
     }
 }

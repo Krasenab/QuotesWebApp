@@ -28,7 +28,7 @@ namespace QuotesWebApp.Data
 
         public Author Author { get; set; }
 
-
+        
         public virtual List<Comment> Comments { get; set; }
 
         public virtual List<Vote> Votes  { get; set; }

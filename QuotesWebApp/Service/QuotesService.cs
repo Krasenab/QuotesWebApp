@@ -14,14 +14,17 @@ namespace QuotesWebApp.Service
 
         public async Task<List<AllQuotesViewModel>> AllQutes(int authorId)
         {
+               
+            
            var getAllQuotes = await _db.Quotes.Where(x=>x.AuthorId == authorId)
                 .Select(x => new AllQuotesViewModel()
                 {   QuoteId = x.Id,
                     AuthorName= x.Author.Name,
+                    AuthorId = x.Author.Id,
                     Description= x.Description,
-                    Sources= x.Sources,
-                    VoteCount = x.Votes.Sum(x=>(int)x.VoteType),
-                  
+                    Sources= x.Sources
+                    
+                   
                     
                 }).ToListAsync();
                 

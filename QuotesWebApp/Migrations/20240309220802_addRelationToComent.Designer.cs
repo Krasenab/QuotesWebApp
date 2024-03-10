@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuotesWebApp.Data;
 
@@ -11,9 +12,11 @@ using QuotesWebApp.Data;
 namespace QuotesWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240309220802_addRelationToComent")]
+    partial class addRelationToComent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -397,7 +400,7 @@ namespace QuotesWebApp.Migrations
             modelBuilder.Entity("QuotesWebApp.Data.Comment", b =>
                 {
                     b.HasOne("QuotesWebApp.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -439,11 +442,6 @@ namespace QuotesWebApp.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Quotes");
-                });
-
-            modelBuilder.Entity("QuotesWebApp.Data.ApplicationUser", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("QuotesWebApp.Data.Quotes", b =>

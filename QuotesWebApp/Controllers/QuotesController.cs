@@ -10,10 +10,13 @@ namespace QuotesWebApp.Controllers
     {
         private ApplicationDbContext _db;
         private QuotesService _quotesService;
-        public QuotesController(ApplicationDbContext applicationDb,QuotesService service)
+        private VoteService _voteService;
+        public QuotesController(ApplicationDbContext applicationDb,QuotesService service, VoteService voteService)
         {
             this._db = applicationDb;
             _quotesService = service;
+            _voteService = voteService;
+
         }
 
 

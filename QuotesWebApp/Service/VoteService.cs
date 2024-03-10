@@ -1,6 +1,9 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuotesWebApp.Data;
+using QuotesWebApp.Models;
 
 namespace QuotesWebApp.Service
 {
@@ -12,29 +15,40 @@ namespace QuotesWebApp.Service
                 _Dbcontext = applicationDbContext;
         }
 
+        public int GetTotalVotes(int quotesId) 
+        {
+           
+
+           
+        }
         public int GetVotes(int quotesId)
         {
-           var votes = _Dbcontext.Votes.Where(x=>x.QuotesId== quotesId).Sum(x=>(int)x.VoteType);
+            var votes = _Dbcontext.Votes.Where(x=>x.QuotesId== quotesId).Sum(x=>(int)x.VoteType);
+          
             return votes;
         }
 
         public async Task VoteAsync(int quotesId, string userId, bool IsUpVote)
         {
-            var vote = _Dbcontext.Votes.FirstOrDefault(x=>x.QuotesId == quotesId && x.ApplicationUserId.ToString() == userId);
+            var userGuid = Guid.Parse(userId);
+            var vote = _Dbcontext.Votes.FirstOrDefault(x => x.QuotesId == quotesId && x.ApplicationUserId == userGuid);
             if (vote!=null)
             {
-                vote.VoteType = IsUpVote ? VoteType.UpVote : VoteType.DownVote;
+                 vote.VoteType = IsUpVote ? VoteType.UpVote : VoteType.DownVote;
+                    
+
+                
             }
             else
             {
                 vote = new Vote
                 {
                     QuotesId = quotesId,
-                    ApplicationUserId = Guid.Parse(userId),
+                    ApplicationUserId = userGuid,
                     VoteType = IsUpVote ? VoteType.UpVote : VoteType.DownVote
                 };
 
-                await this._Dbcontext.Votes.AddAsync(vote);
+                this._Dbcontext.Votes.Add(vote);
 
             }
 

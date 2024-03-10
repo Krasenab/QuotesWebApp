@@ -2,6 +2,9 @@
 @{
     ViewData["Tatle"] = "All Person Quotes and sources for them";
 }
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></link>
+</head>
 
 <h1>
     @ViewData["Title"]
@@ -22,15 +25,15 @@
             </blockquote>
             <div class="text-muted large ml-3">
                 <div>
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,true)">
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,true,@quotes.AuthorId)">
                         <i class="fa fa-thumbs-up"></i>
                     </a>
                     
-                </div>
-                <div id="votesTotal-@quotes.QuoteId">@quotes.VoteCount</div>
+                </div>                
+                <partial name="_VotePrtial"/>
                 <div>
 
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,false,@quotes.AuthorId)"><i class="fa fa-thumbs-down"></i></a>
                 </div>
             </div>
         </div>
@@ -40,8 +43,8 @@
 
 <script>
  
-        function sendVote(quoteId,isUpVote) {
-
+        function sendVote(quoteId,isUpVote,authorId) {
+            var idForSend = authorId;
             var json = { quoteId: quoteId, isUpVote:isUpVote};
             console.log(json);
             $.ajax({
@@ -50,9 +53,9 @@
                 data: JSON.stringify(json),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                success: function (data) {
-                  
-                    $("#votesTotal-" + quoteId).html(data.VoteCount);
+                success: function () {
+                     /*  $("#votesTotal-").text(data.VoteCount) */;
+                     window.location.href = '/Quotes/AllQuotes?authorId=' + authorId;
                 }
 
             });

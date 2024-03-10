@@ -8,5 +8,7 @@ namespace QuotesWebApp.Data
         {
                    
         }
+
+        public List<Comment> Comments { get; set; }
     }
 }

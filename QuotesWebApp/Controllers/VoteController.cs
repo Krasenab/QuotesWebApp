@@ -28,9 +28,12 @@ namespace QuotesWebApp.Controllers
         public async Task<ActionResult<VoteResponseModel>> QuoteVot(VoteInputViewModel model) 
         {
             var userId =  this.userManager.GetUserId(this.User);
+
             await this.voteService.VoteAsync(model.QuoteId, userId, model.IsUpVote);
             var votesCount = this.voteService.GetVotes(model.QuoteId);
             return new VoteResponseModel { VoteCount = votesCount };
         }
+
+       
     }
 }
