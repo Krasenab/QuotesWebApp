@@ -25,16 +25,15 @@
             </blockquote>
             <div class="text-muted large ml-3">
                 <div>
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,true,@quotes.AuthorId)">
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,true)">
                         <i class="fa fa-thumbs-up"></i>
-                    </a>
-                    
+                    </a>                    
                 </div>
                 
-                <partial name="_QuotePartial" hidden="@quotes.QuoteId" />
-
+                <div id="currentCount">@quotes.CurrentVoteCount</div>
+               
                 <div>
-                    <a href="#" onclick="sendVote(@quotes.QuoteId,false,@quotes.AuthorId)"><i class="fa fa-thumbs-down"></i></a>
+                    <a href="#" onclick="sendVote(@quotes.QuoteId,false)"><i class="fa fa-thumbs-down"></i></a>
                 </div>
             </div>
         </div>
@@ -44,8 +43,8 @@
 
 <script>
  
-        function sendVote(quoteId,isUpVote,authorId) {
-            var idForSend = authorId;
+        function sendVote(quoteId,isUpVote,currentCount) {
+           
             var json = { quoteId: quoteId, isUpVote:isUpVote};
             console.log(json);
             $.ajax({
@@ -54,10 +53,8 @@
                 data: JSON.stringify(json),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                success: function () {
-                     /*  $("#votesTotal-").text(data.VoteCount) */;
-
-                     window.location.href = '/Quotes/AllQuotes?authorId=' + authorId;
+                success: function (data) {                     
+                    $("#currentCount").html(data.currentCount);
                 }
 
             });
@@ -65,5 +62,7 @@
         }
 
 </script>
+
+
     
    

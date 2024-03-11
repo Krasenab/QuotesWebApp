@@ -7,27 +7,30 @@ namespace QuotesWebApp.Service
     public class QuotesService : IQuotesService
     {
         private ApplicationDbContext _db;
+        
         public QuotesService(ApplicationDbContext applicationDb)
         {
                 _db = applicationDb;
         }
 
+      
+
         public async Task<List<AllQuotesViewModel>> AllQutes(int authorId)
         {
+         
                
-            
            var getAllQuotes = await _db.Quotes.Where(x=>x.AuthorId == authorId)
                 .Select(x => new AllQuotesViewModel()
                 {   QuoteId = x.Id,
                     AuthorName= x.Author.Name,
                     AuthorId = x.Author.Id,
                     Description= x.Description,
-                    Sources= x.Sources
-                    
-                   
-                    
+                    Sources= x.Sources,
+                    CurrentVoteCount = x.Votes.Sum(x=>(int)x.VoteType)
+                                                          
                 }).ToListAsync();
                 
+          
                 
 
             return getAllQuotes;

@@ -15,14 +15,10 @@ namespace QuotesWebApp.Service
                 _Dbcontext = applicationDbContext;
         }
 
-        public int GetTotalVotes(int quotesId) 
-        {
-           return 0;
-
-         
-        }
+   
         public int GetVotes(int quotesId)
         {
+
             var votes = _Dbcontext.Votes.Where(x=>x.QuotesId== quotesId).Sum(x=>(int)x.VoteType);
           
             return votes;
@@ -30,14 +26,14 @@ namespace QuotesWebApp.Service
 
         public async Task VoteAsync(int quotesId, string userId, bool IsUpVote)
         {
+            var existUser = userId;
             var userGuid = Guid.Parse(userId);
             var vote = _Dbcontext.Votes.FirstOrDefault(x => x.QuotesId == quotesId && x.ApplicationUserId == userGuid);
+
             if (vote!=null)
             {
-                 vote.VoteType = IsUpVote ? VoteType.UpVote : VoteType.DownVote;
-                    
-
-                
+                              
+                    vote.VoteType = IsUpVote ? VoteType.UpVote : VoteType.DownVote;                                  
             }
             else
             {

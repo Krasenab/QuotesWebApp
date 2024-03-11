@@ -33,16 +33,7 @@ namespace QuotesWebApp.Controllers
             var votesCount = this.voteService.GetVotes(model.QuoteId);
             return new VoteResponseModel { VoteCount = votesCount };
         }
-        public async Task<ActionResult<QuotesTotalVoteViewModel>> VoteForQuote(int quoteId)
-        {
-            var userId = this.userManager.GetUserId(this.User);
-            var getTotalVote = this.voteService.GetTotalVotes(quoteId);
-
-            return new QuotesTotalVoteViewModel
-            {
-                VoteTotal = getTotalVote 
-            };
-        }
+     
 
     }
 }

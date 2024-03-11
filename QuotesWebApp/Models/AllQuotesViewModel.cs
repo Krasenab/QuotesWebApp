@@ -4,7 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace QuotesWebApp.Models
 {
-    public class AllQuotesViewModel  
+    public class AllQuotesViewModel
     {
         public int QuoteId { get; set; }
 
@@ -15,10 +15,7 @@ namespace QuotesWebApp.Models
 
         public string Sources { get; set; }
 
-        //public int VoteCount { get; set; }
-
-
-      
+        public int CurrentVoteCount { get; set; }
 
     }
 }

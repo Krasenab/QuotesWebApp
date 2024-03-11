@@ -8,7 +8,8 @@ namespace QuotesWebApp.Service
 
         int GetAuthorIdForQuotes (int authorId);
 
-        Task<List<AllQuotesViewModel>> AllQutes(int authorId);     
+        Task<List<AllQuotesViewModel>> AllQutes(int authorId);
+
 
     }
 }

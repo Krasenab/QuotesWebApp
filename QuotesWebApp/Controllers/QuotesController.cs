@@ -51,9 +51,11 @@ namespace QuotesWebApp.Controllers
 
         [HttpGet]
         public async Task<IActionResult> AllQuotes(int authorId)
-        { 
+        {
+          
             var getAllQuotes = await _quotesService.AllQutes(authorId);
-
+         
+                      
             return View(getAllQuotes);
 
         }
