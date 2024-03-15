@@ -7,18 +7,16 @@ namespace QuotesWebApp.Data
     {
         [Required]
         public int Id { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-
         public string Category { get; set; }
-
         public string YearsFromTo { get; set; }
 
         [ForeignKey(nameof(Quotes))]
         public int? QuotesId { get; set; }
-
         public Quotes? Quotes { get; set; }
+
+        
     }
 }
