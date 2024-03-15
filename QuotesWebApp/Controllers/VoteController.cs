@@ -31,7 +31,11 @@ namespace QuotesWebApp.Controllers
 
             await this.voteService.VoteAsync(model.QuoteId, userId, model.IsUpVote);
             var votesCount = this.voteService.GetVotes(model.QuoteId);
-            return new VoteResponseModel { VoteCount = votesCount };
+
+            return new VoteResponseModel 
+            { 
+                VoteCount = votesCount 
+            };
         }
      
 
