@@ -1,12 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
 
 namespace QuotesWebApp.Data
 {
     public class Rating
     {
+        [Key]
         public int Id { get; set; }
-
+        
         public int RatingValue { get; set; }
 
         [ForeignKey(nameof(ApplicationUser))]
