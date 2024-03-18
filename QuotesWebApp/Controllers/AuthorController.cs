@@ -7,9 +7,11 @@ namespace QuotesWebApp.Controllers
     public class AuthorController : Controller
     {
         private IAuthorService _authorService;
+
         public AuthorController(AuthorService authorService)
         {
                 this._authorService = authorService;
+            
         }
         [HttpGet]
         public IActionResult Create()
@@ -29,6 +31,8 @@ namespace QuotesWebApp.Controllers
         [HttpGet]
         public  IActionResult All() 
         {
+          
+            
             var getAll = _authorService.GetAll();
             return View(getAll);
         }

@@ -9,5 +9,7 @@
         public string Category { get; set; }
 
         public string YearsFromTo { get; set; }
+
+     
     }
 }

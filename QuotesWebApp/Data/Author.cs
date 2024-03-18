@@ -17,6 +17,9 @@ namespace QuotesWebApp.Data
         public int? QuotesId { get; set; }
         public Quotes? Quotes { get; set; }
 
+        public double? PeopleReatingCount { get; set; }
+        List<Rating> Ratings { get; set; }
+
         
     }
 }

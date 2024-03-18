@@ -4,6 +4,10 @@ namespace QuotesWebApp.Service
 {
     public interface IRatingService
     {
-        void AddRating(int value);
+        Task AddRating(int starValue,int authorId,string applicationUserId);
+
+        double GetRating(int AhtorId);
+
+        List<RatingInputViewModel> GetAllAuhstorsRatings();
     }
 }

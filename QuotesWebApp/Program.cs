@@ -35,6 +35,7 @@ namespace QuotesWebApp
             builder.Services.AddScoped<AuthorService>();
             builder.Services.AddScoped<QuotesService>();
             builder.Services.AddScoped<VoteService>();
+            builder.Services.AddScoped<RatingService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -4,6 +4,6 @@
     {
         public int AuthorId { get; set; }
 
-        public int RatingStarValue { get; set; }
+        public int StarValue { get; set; }
     }
 }

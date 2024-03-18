@@ -1,7 +1,44 @@
-﻿@model List<AllAuthorViewModel>
+﻿@using QuotesWebApp.Service
+@model List<AllAuthorViewModel>
+@inject RatingService rating
 @{
     ViewData["Title"] = "All Author";
 }
+<head>
+    <style>
+        .ratings {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            direction: rtl;
+            text-align: left;
+        }
+
+        .star {
+            position: relative;
+            line-height: 50px;/*60px*/
+            display: inline-block;
+            transition: color 0.2s ease;
+            color: #ebebeb;
+        }
+
+            .star:before {
+                content: '\2605';
+                width: 50px;/*60px*/
+                height: 50px;/*60px*/
+                font-size: 50px;/*60px*/
+            }
+
+            .star:hover,
+            .star.selected,
+            .star:hover ~ .star,
+            .star.selected ~ .star {
+                transition: color 0.8s ease;
+                color: black;
+            }
+    </style>
+</head>
 
 <h1>
     @ViewData["Title"];
@@ -21,7 +58,17 @@
                     <input type="hidden" name="authorId" value="@author.Id" />
                     <button type="submit" class="btn btn-sm">Create Quotes</button>
                 </form>
-                
+
+                <div class="star-rating">
+                    <ul class="ratings">
+                        <li class="star" onclick="sendRating(@author.Id,1)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,2)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,3)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,4)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,5)"></li>
+                    </ul>
+                </div>
+                <div id="#currentRating">@rating.GetRating(author.Id)</div>
                 <form asp-controller="Quotes" asp-action="AllQuotes" asp-route-ahtorId="@author.Id" method="get" >
 
                     <input type="hidden" name="authorId" value="@author.Id"/>
@@ -33,6 +80,40 @@
   
 }
 
-<p>For now we don't have quotes for you, but you can add some</p>
+<script>
+
+
+    function sendRating(authorId, starValue) {
+
+        var json = { authorId: authorId, starValue: starValue };
+  
+        console.log(json);
+        $.ajax({
+            url: "/api/Rating",
+            type: "POST",
+            data: JSON.stringify(json),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                @*    $("#currentRating").html(Rating:d.sendRating) *@
+                    $("#currentRating").html(data.RatingResult);
+            }
+
+        });
+
+    }
+  @*   $(function () {
+        var star = '.star',
+            selected = '.selected';
+
+        $(star).on('click', function () {
+            $(selected).each(function () {
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+    }); *@
+</script>
 
 
