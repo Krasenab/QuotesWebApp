@@ -8,6 +8,6 @@ namespace QuotesWebApp.Service
 
         double GetRating(int AhtorId);
 
-        List<RatingInputViewModel> GetAllAuhstorsRatings();
+        
     }
 }

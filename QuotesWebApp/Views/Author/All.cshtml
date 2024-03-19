@@ -1,6 +1,7 @@
 ﻿@using QuotesWebApp.Service
 @model List<AllAuthorViewModel>
 @inject RatingService rating
+
 @{
     ViewData["Title"] = "All Author";
 }
@@ -54,21 +55,25 @@
                 <h6 class="card-subtitle mb-2 text-body-secondary">@author.Category</h6>
                 <p class="card-text">@author.YearsFromTo</p>
 
+
+
+                <div class="star-rating" data-rating="@rating.GetRating(author.Id)">
+                    <ul class="ratings">
+                        <li class="star" onclick="sendRating(@author.Id,5)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,4)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,3)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,2)"></li>
+                        <li class="star" onclick="sendRating(@author.Id,1)"></li>
+                    </ul>
+                </div>
+                <div id="currentRating">@rating.GetRating(author.Id)</div>
+
+
                 <form asp-action="CreateQuotes" asp-controller="Quotes" asp-route-autorId="@author.Id" method="get">
                     <input type="hidden" name="authorId" value="@author.Id" />
                     <button type="submit" class="btn btn-sm">Create Quotes</button>
                 </form>
 
-                <div class="star-rating">
-                    <ul class="ratings">
-                        <li class="star" onclick="sendRating(@author.Id,1)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,2)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,3)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,4)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,5)"></li>
-                    </ul>
-                </div>
-                <div id="#currentRating">@rating.GetRating(author.Id)</div>
                 <form asp-controller="Quotes" asp-action="AllQuotes" asp-route-ahtorId="@author.Id" method="get" >
 
                     <input type="hidden" name="authorId" value="@author.Id"/>
@@ -86,7 +91,7 @@
     function sendRating(authorId, starValue) {
 
         var json = { authorId: authorId, starValue: starValue };
-  
+       
         console.log(json);
         $.ajax({
             url: "/api/Rating",
@@ -94,13 +99,32 @@
             data: JSON.stringify(json),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            success: function (data) {
+            success: function () {
+
                 @*    $("#currentRating").html(Rating:d.sendRating) *@
-                    $("#currentRating").html(data.RatingResult);
+
+                    @*     $("#currentRating").html(RatingResult: data.GetRating(authorId))   *@
+                    window.location.reload()
+
             }
 
         });
 
+    }
+    function setRating(ratingValue) {
+        // Закръглете рейтинга до най-близкото половин число
+        const roundedRating = (Math.round(ratingValue * 2) / 2).toFixed(1);
+        const stars = document.querySelectorAll('.star-rating .star');
+
+        // Задайте пълноцветни звезди
+        stars.forEach((star, index) => {
+            star.style.color = index < Math.floor(roundedRating) ? 'gold' : '#ebebeb';
+        });
+
+        // Задайте половинка звезда ако е необходимо
+        if (roundedRating % 1 >= 0.5) {
+            stars[Math.floor(roundedRating)].style.background = 'linear-gradient(90deg, gold 50%, #ebebeb 50%)';
+        }
     }
   @*   $(function () {
         var star = '.star',

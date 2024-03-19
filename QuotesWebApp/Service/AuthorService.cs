@@ -35,10 +35,8 @@ namespace QuotesWebApp.Service
                 Id=a.Id,
                 Name = a.Name,
                 Category = a.Category,
-                YearsFromTo = a.YearsFromTo,
-          
-              
-
+                YearsFromTo = a.YearsFromTo
+               
             }).ToList();
 
 

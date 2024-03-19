@@ -22,6 +22,7 @@ namespace QuotesWebApp.Service
 
             if (isExistRating != null) 
             {
+                isExistRating.AhtorId = authorId;
                 isExistRating.RatingValue = starValue;
             }
             else
@@ -53,10 +54,10 @@ namespace QuotesWebApp.Service
 
         public double GetRating(int ahtorId)
         {
-            int countOfPeople = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Count();
+            double countOfPeople = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Count();
 
-            int starValue = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Select(x=>x.RatingValue).First();
-            int sum = _context.Ratings.Where(x => x.AhtorId == ahtorId).Sum(x => x.RatingValue);
+            double starValue = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Select(x=>x.RatingValue).First();
+            double sum = _context.Ratings.Where(x => x.AhtorId == ahtorId).Sum(x => x.RatingValue);
             double result = sum/countOfPeople;
             return result;
         }

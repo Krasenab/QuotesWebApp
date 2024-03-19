@@ -10,6 +10,7 @@
 
         public string YearsFromTo { get; set; }
 
-     
+        public double RatingResult { get; set; }
+
     }
 }

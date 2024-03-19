@@ -34,6 +34,7 @@ namespace QuotesWebApp.Controllers
           
             
             var getAll = _authorService.GetAll();
+          
             return View(getAll);
         }
     }
