@@ -12,31 +12,35 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            direction: rtl;
-            text-align: left;
+            text-align: left; /* За да започват звездите от ляво */
         }
 
         .star {
             position: relative;
-            line-height: 50px;/*60px*/
+            line-height: 50px;
             display: inline-block;
             transition: color 0.2s ease;
-            color: #ebebeb;
+            color: #ebebeb; /* Цветът на неактивните звезди */
         }
 
             .star:before {
-                content: '\2605';
-                width: 50px;/*60px*/
-                height: 50px;/*60px*/
-                font-size: 50px;/*60px*/
+                content: '\2605'; /* Unicode символ за звезда */
+                width: 50px;
+                height: 50px;
+                font-size: 50px;
+                display: block;
             }
 
-            .star:hover,
-            .star.selected,
-            .star:hover ~ .star,
-            .star.selected ~ .star {
-                transition: color 0.8s ease;
-                color: black;
+            .star.full:before {
+                color: black; /* Цветът на активните звезди */
+            }
+
+            .star.half:before {
+                content: '\2605\00a0'; /* Unicode за пълна и празна звезда за половинка */
+                position: absolute;
+                width: 25px; /* Половината от ширината на звездата за половинка */
+                overflow: hidden;
+                direction: ltr;
             }
     </style>
 </head>
@@ -48,8 +52,8 @@
 @if (Model.Any())
 {   foreach (var author in Model)
     {
-        
-        <div class="card" style="width: 18rem;">
+
+        <div class="card" style="width: 18rem;" data-author-id="@author.Id">
             <div class="card-body">
                 <h5 class="card-title">@author.Name</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">@author.Category</h6>
@@ -99,45 +103,36 @@
             data: JSON.stringify(json),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
-            success: function () {
+            success: function (data) {
 
-                @*    $("#currentRating").html(Rating:d.sendRating) *@
-
-                    @*     $("#currentRating").html(RatingResult: data.GetRating(authorId))   *@
-                    window.location.reload()
+                
+                window.location.reload();
 
             }
 
         });
 
     }
-    function setRating(ratingValue) {
-        // Закръглете рейтинга до най-близкото половин число
-        const roundedRating = (Math.round(ratingValue * 2) / 2).toFixed(1);
-        const stars = document.querySelectorAll('.star-rating .star');
+    function updateStarRatings() {
+        const ratingContainers = document.querySelectorAll('.star-rating');
 
-        // Задайте пълноцветни звезди
-        stars.forEach((star, index) => {
-            star.style.color = index < Math.floor(roundedRating) ? 'gold' : '#ebebeb';
-        });
+        ratingContainers.forEach(container => {
+            const currentRating = parseFloat(container.getAttribute('data-rating'));
+            const stars = container.querySelectorAll('.star');
 
-        // Задайте половинка звезда ако е необходимо
-        if (roundedRating % 1 >= 0.5) {
-            stars[Math.floor(roundedRating)].style.background = 'linear-gradient(90deg, gold 50%, #ebebeb 50%)';
-        }
-    }
-  @*   $(function () {
-        var star = '.star',
-            selected = '.selected';
-
-        $(star).on('click', function () {
-            $(selected).each(function () {
-                $(this).removeClass('selected');
+            stars.forEach((star, index) => {
+                star.classList.remove('full', 'half');
+                if (index + 1 <= currentRating) {
+                    star.classList.add('full');
+                } else if (index + 0.5 < currentRating) {
+                    star.classList.add('half');
+                }
             });
-            $(this).addClass('selected');
         });
+    }
 
-    }); *@
+    document.addEventListener('DOMContentLoaded', updateStarRatings);
+  
 </script>
 
 
