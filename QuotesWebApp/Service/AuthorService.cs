@@ -28,14 +28,15 @@ namespace QuotesWebApp.Service
 
         public  List<AllAuthorViewModel> GetAll()
         {
-
+            
             
             List<AllAuthorViewModel> getAll =  _db.Authors.Select(a => new AllAuthorViewModel() 
             {
                 Id=a.Id,
                 Name = a.Name,
                 Category = a.Category,
-                YearsFromTo = a.YearsFromTo
+                YearsFromTo = a.YearsFromTo,
+                
                
             }).ToList();
 

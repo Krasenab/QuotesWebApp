@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "All Author";
+    
 }
 <head>
     <style>
@@ -58,19 +59,55 @@
                 <h5 class="card-title">@author.Name</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">@author.Category</h6>
                 <p class="card-text">@author.YearsFromTo</p>
+                @{
+                    var isRatingZeroForStar = rating.GetRating(author.Id);
+
+                }
+                @if (isRatingZeroForStar == 0)
+                {
+                    <div class="star-rating">
+                        <ul class="ratings">
+                            <li class="star" onclick="sendRating(@author.Id,1)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,2)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,3)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,4)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,5)"></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="star-rating" data-rating="@rating.GetRating(author.Id)">
+                        <ul class="ratings">
+                            <li class="star" onclick="sendRating(@author.Id,1)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,2)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,3)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,4)"></li>
+                            <li class="star" onclick="sendRating(@author.Id,5)"></li>
+                        </ul>
+                    </div>
+                    
+                }
 
 
 
-                <div class="star-rating" data-rating="@rating.GetRating(author.Id)">
-                    <ul class="ratings">
-                        <li class="star" onclick="sendRating(@author.Id,5)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,4)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,3)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,2)"></li>
-                        <li class="star" onclick="sendRating(@author.Id,1)"></li>
-                    </ul>
+
+                <div id="currentRating">
+                    @{
+                          var isRatingZero = rating.GetRating(author.Id);
+                       
+                    }
+                    @if (isRatingZero == 0)
+                    {
+                        <p>0.00</p>
+                    }else
+                    {
+                        @rating.GetRating(author.Id);
+                    }
+
+
                 </div>
-                <div id="currentRating">@rating.GetRating(author.Id)</div>
 
 
                 <form asp-action="CreateQuotes" asp-controller="Quotes" asp-route-autorId="@author.Id" method="get">

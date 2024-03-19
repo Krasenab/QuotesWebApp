@@ -40,23 +40,12 @@ namespace QuotesWebApp.Service
             }
             await _context.SaveChangesAsync();  
         }
-
-        public List<RatingInputViewModel> GetAllAuhstorsRatings()
-        {
-            var allRatings = _context.Ratings.Select(x=> new RatingInputViewModel() 
-             {
-                AuthorId = x.AhtorId,
-                StarValue = x.RatingValue
-             }).ToList();
-
-            return allRatings;
-        }
-
+    
         public double GetRating(int ahtorId)
         {
-            double countOfPeople = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Count();
 
-            double starValue = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Select(x=>x.RatingValue).First();
+            double countOfPeople = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Count();
+            //double starValue = _context.Ratings.Where(x=>x.AhtorId==ahtorId).Select(x=>x.RatingValue).First();
             double sum = _context.Ratings.Where(x => x.AhtorId == ahtorId).Sum(x => x.RatingValue);
             double result = sum/countOfPeople;
             return result;
