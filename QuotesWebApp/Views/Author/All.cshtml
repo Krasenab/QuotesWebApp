@@ -95,12 +95,14 @@
 
                 <div id="currentRating">
                     @{
+                        // need chages
                           var isRatingZero = rating.GetRating(author.Id);
                        
 
                     }
                     @if (isRatingZero == 0)
                     {
+                        // not very good solution 
                         <p>0.00</p>
                     }else
                     {
